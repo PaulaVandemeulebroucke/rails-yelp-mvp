@@ -1,0 +1,19 @@
+<h1><%= @restaurant.name %></h1>
+<p><%= @restaurant.phone_number %></p>
+<p><%= @restaurant.address %></p>
+<p><%= @restaurant.category %></p>
+<ul>
+  <% @restaurant.reviews.each do |review|%>
+    <li>
+      <%= review.content%>
+      <%= "*" * (review.rating).to_i %>
+      <%= link_to restaurant_review_path(@restaurant, review), method: :delete do %>
+        <i class="fa fa-trash-alt"></i>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<p><%= link_to "Ajouter une review", new_restaurant_review_path(@restaurant), :class => "btn btn-primary"  %><p>
+<p><%= link_to "Modifier les infos du restaurant", edit_restaurant_path(@restaurant), :class => "btn btn-info"  %><p>
+<p class: btn btn-primary><%= link_to "Home", restaurants_path, :class => "btn btn-warning" %><p>
